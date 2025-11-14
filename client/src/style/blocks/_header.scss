@@ -1,0 +1,62 @@
+@use "../global/variables" as *;
+
+.header {
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 10;
+    background-color: $color-white;
+
+    &__wrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        width: 289px;
+        flex-shrink: 1;
+    }
+
+    &__right {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__search-bar {
+        width: 798px;
+        border-radius: 30px;
+        padding: 20px 44px;
+        background-color: $color-body;
+        height: 53px;
+        border: none;
+        outline: none;
+        color: $color-black;
+        font-family: $ff-actor;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 12px;
+        letter-spacing: 0.09em;
+
+        &::placeholder {
+            font-family: $ff-actor;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 12px;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: #A4A4A4;
+        }
+    }
+
+    &__search-bar-icon {
+        position: absolute;
+        left: 12px;
+        top: 40px;
+    }
+}
