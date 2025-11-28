@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { addToFavourite, removeFromFavourite } from "../store/favouritesSlice";
 import { playTrack } from "../store/playerSlice";
 import { Icon } from "../ui/Icon";
+import { getAudioUrl } from "../utils/tracksMock";
+import { useNavigate } from "react-router-dom";
 
 interface AudioItem {
   id: number;
@@ -23,6 +26,8 @@ interface TracksListProps {
 export const TracksList = ({ audios }: TracksListProps) => {
   const dispatch = useAppDispatch();
   const { favourites } = useAppSelector((state) => state.favourites);
+  const {token} = useAppSelector((state) => state.auth)
+  const navigate = useNavigate()
 
   if (!audios || !Array.isArray(audios)) {
     console.error("TracksList: audios is not an array:", audios);
@@ -35,7 +40,12 @@ export const TracksList = ({ audios }: TracksListProps) => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  const handleFavouriteClick = (audio: AudioItem) => {
+  const handleFavouriteClick = (audio: AudioItem, e: React.MouseEvent) => {
+
+    if(!token) {
+      navigate("/login")
+    }
+    e.stopPropagation()
     const isCurrentlyFavourite = favourites.some(
       (item) => item.id === audio.id
     );
@@ -51,14 +61,22 @@ export const TracksList = ({ audios }: TracksListProps) => {
     return favourites.some((item) => item.id === id);
   };
 
-  const handleTrackClick = (audio: AudioItem) => {
-    dispatch(
-      playTrack({
-        track: audio,
-        queue: audios,
-      })
-    );
-  };
+const handleTrackClick = (audio: AudioItem) => {
+  const audioUrl = audio.encoded_audio || getAudioUrl(audio.id);
+  
+  dispatch(
+    playTrack({
+      track: {
+        ...audio,
+        encoded_audio: audioUrl // Обновляем поле
+      },
+      queue: audios.map(item => ({
+        ...item,
+        encoded_audio: item.encoded_audio || getAudioUrl(item.id)
+      })),
+    })
+  );
+};
 
   return (
     <>
@@ -105,7 +123,9 @@ export const TracksList = ({ audios }: TracksListProps) => {
                     isFavourite(audio.id) ? "active" : ""
                   }`}
                   type="button"
-                  onClick={() => handleFavouriteClick(audio)}
+                  onClick={(e) => {
+                    handleFavouriteClick(audio, e);
+                  }}
                 >
                   <Icon name="icon-heart" width={24} height={24} />
                 </button>
@@ -145,7 +165,9 @@ export const TracksList = ({ audios }: TracksListProps) => {
                   isFavourite(audio.id) ? "active" : ""
                 }`}
                 type="button"
-                onClick={() => handleFavouriteClick(audio)}
+                onClick={(e) => {
+                  handleFavouriteClick(audio, e);
+                }}
               >
                 <Icon name="icon-heart" width={24} height={24} />
               </button>
