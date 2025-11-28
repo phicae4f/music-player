@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { addToFavourite, removeFromFavourite } from "../store/favouritesSlice";
 import { playTrack } from "../store/playerSlice";
