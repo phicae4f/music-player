@@ -1,7 +1,6 @@
 import {
   createAsyncThunk,
-  createSlice,
-  type PayloadAction,
+  createSlice
 } from "@reduxjs/toolkit";
 import type { AudioItem } from "./tracksSlice";
 import type { RootState } from "./store";
@@ -173,7 +172,7 @@ const favouritesSlice = createSlice({
         localFavourites.forEach((localItem: AudioItem) => {
           if (
             !serverFavourites.find(
-              (serverItem) => serverItem.id === localItem.id
+              (serverItem: any) => serverItem.id === localItem.id
             )
           ) {
             mergedFavourites.push(localItem);

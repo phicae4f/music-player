@@ -6,7 +6,7 @@ import { AudioFilters } from "../components/AudioFilters";
 
 export const TracksPage = () => {
   const dispatch = useAppDispatch();
-  const { filteredAudios, isLoading, error, filter, searchQuery } =
+  const { filteredAudios, isLoading, error } =
     useAppSelector((state) => state.tracks);
 
   useEffect(() => {

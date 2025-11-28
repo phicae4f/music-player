@@ -138,7 +138,7 @@ const handleTrackClick = (audio: AudioItem) => {
         </div>
       </div>
       <ul className="tracks-table tracks-table--list">
-        {audios.map((audio, index) => (
+        {audios.map((audio) => (
           <li
             key={audio.id}
             className="tracks-table__row"

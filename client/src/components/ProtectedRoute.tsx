@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { useAppSelector } from "../hooks/redux"
 import { Navigate } from "react-router-dom"
 
