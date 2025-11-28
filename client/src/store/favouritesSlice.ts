@@ -33,7 +33,7 @@ export const getFavouriteTracks = createAsyncThunk(
       console.log("Fetching favourites from server...");
 
       const response = await fetch(
-        `api/favorites`,
+        `${import.meta.env.VITE_API_URL}/favorites`,
         {
           method: "GET",
           headers: {
@@ -71,7 +71,7 @@ export const addToFavourite = createAsyncThunk(
       }
 
       const response = await fetch(
-        `api/favorites`,
+        `${import.meta.env.VITE_API_URL}/favorites`,
         {
           method: "POST",
           headers: {
@@ -116,7 +116,7 @@ export const removeFromFavourite = createAsyncThunk(
       }
 
       const response = await fetch(
-        `api/favorites`,
+        `${import.meta.env.VITE_API_URL}/favorites`,
         {
           method: "DELETE",
           headers: {

@@ -37,7 +37,7 @@ export const fetchAllAudio = createAsyncThunk(
   "tracks/fetchAllAudio",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch(`api/tracks`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/tracks`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
