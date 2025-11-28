@@ -1,0 +1,211 @@
+@use "../global/variables" as *;
+@use "../global/mixins" as *;
+
+.player {
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $color-white;
+  border-top: 1px solid $color-darker-gray;
+  $root: &;
+
+  @include vp-767 {
+    display: none;
+  }
+
+  &__wrapper {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__left {
+    max-width: 434px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &__left-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+
+    @include vp-767 {
+      gap: 4px;
+    }
+  }
+
+  &__track-name,
+  &__album-name {
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.01em;
+    color: $color-black;
+  }
+
+  &__album-name {
+    font-size: 12px;
+    color: $color-dark-gray;
+  }
+
+  &__middle {
+    width: 681px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+  }
+
+  &__middle-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__middle-bottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__time-passed,
+  &__time-left {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: 0.015em;
+    color: $color-whisper;
+  }
+
+  &__time-bar {
+    width: 100%;
+    height: 4px;
+    border-radius: 75px;
+    background-color: $color-whisper;
+    cursor: pointer;
+    position: relative;
+
+    &-filled {
+      height: 100%;
+      border-radius: 75px;
+      background-color: $color-orange;
+      position: relative;
+      transition: width 0.1s;
+    }
+
+    &-handle {
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $color-orange;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    &:hover &-handle {
+      opacity: 1;
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 97px;
+
+    @include vp-767 {
+      display: none;
+    }
+  }
+
+  &__volume-bar {
+    width: 100%;
+    height: 4px;
+    border-radius: 75px;
+    background-color: $color-whisper;
+    cursor: pointer;
+    position: relative;
+
+    &-filled {
+      height: 100%;
+      border-radius: 75px;
+      background-color: $color-orange;
+      position: relative;
+      transition: width 0.1s;
+    }
+
+    &-handle {
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $color-orange;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    &:hover &-handle {
+      opacity: 1;
+    }
+  }
+
+  &__middle-btn {
+    border: none;
+    background-color: transparent;
+    color: $color-black;
+
+    &.pause {
+      color: $color-orange;
+    }
+    &.active {
+      color: $color-black;
+    }
+  }
+
+  &--mobile {
+    display: none;
+    border: none;
+
+    #{$root}__wrapper {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    #{$root}__top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #{$root}__middle-top {
+      gap: 5px;
+    }
+    #{$root}__middle-btn {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+    }
+
+    @include vp-767 {
+      display: flex;
+    }
+  }
+}
+
+.player:not(:has(audio[src])) {
+  display: none;
+}

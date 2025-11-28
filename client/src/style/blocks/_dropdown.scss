@@ -1,3 +1,156 @@
+@use "../global/variables" as *;
+@use "../global/mixins" as *;
+
 .dropdown {
-    
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &__list {
+    border-radius: 10px;
+    background-color: $color-whisper;
+    position: absolute;
+    transform: translate(70px, 30px);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform $transition-300, visibility $transition-300,
+      opacity $transition-300;
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(70px, 80px);
+
+      @include vp-767 {
+        transform: translate(15px, 60px);
+      }
+    }
+
+    @include vp-767 {
+      transform: translate(15px, 30px);
+      z-index: 2000;
+    }
+  }
+
+  &__item {
+    padding: 10px 40px 10px 20px;
+    display: flex;
+    align-items: flex-start;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: $color-black;
+    font-family: $ff-actor;
+    background-color: transparent;
+    transition: background-color $transition-300;
+
+    a {
+      color: $color-black;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color-white;
+    }
+
+    @include vp-767 {
+      padding: 5px 10px 5px 10px;
+      display: flex;
+      align-items: flex-start;
+      font-size: 12px;
+      line-height: 10px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  &__button {
+    min-height: 53px;
+    min-width: 246px;
+    width: auto;
+    display: flex;
+    padding: 3px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+
+    @include vp-767 {
+      background-color: transparent;
+      min-width: 84px;
+      min-height: 25px;
+    }
+  }
+
+  &__user-info {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+
+    @include vp-767 {
+      gap: 8px;
+    }
+  }
+
+  &__user-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+
+    @include vp-767 {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  &__user-name {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.01em;
+    color: $color-black;
+    max-width: 64px;
+    text-align: left;
+    max-width: 90px;
+    word-wrap: break-word;
+    white-space: normal;
+
+    @include vp-767 {
+      font-size: 12px;
+    }
+  }
+
+  &__icon {
+    transform: rotate(0);
+    transition: transform $transition-300;
+
+    &.open {
+      transform: rotate(90deg);
+    }
+
+    @include vp-767 {
+      display: none;
+    }
+  }
+
+  &__logout {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: $color-black;
+    font-family: $ff-actor;
+
+    @include vp-767 {
+      font-size: 12px;
+      line-height: 10px;
+      letter-spacing: 0.01em;
+    }
+  }
 }

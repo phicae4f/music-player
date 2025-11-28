@@ -1,6 +1,14 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
 .container {
     margin: 0 auto;
     max-width: 1380px;
     padding: 0 30px;
     width: 100%;
+
+    @include vp-767 {
+        max-width: 328px;
+        padding: 0 16px;
+    }
 }

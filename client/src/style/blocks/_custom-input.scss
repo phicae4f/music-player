@@ -1,0 +1,46 @@
+@use "../global/variables" as *;
+@use "../global/mixins" as *;
+
+.custom-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  @include vp-767 {
+    gap: 5px;
+  }
+
+  &__label {
+    color: $color-darker-gray;
+    font-size: 20px;
+
+    @include vp-767 {
+      font-size: 15px;
+    }
+  }
+
+  &__field {
+    width: 100%;
+    color: $color-darker-gray;
+    font-size: 18px;
+    font-family: $ff-actor;
+    border: none;
+    outline: none;
+    background-color: $color-white;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+    @include vp-767 {
+      font-size: 12px;
+    }
+  }
+
+  &__error {
+    color: $color-red;
+
+    @include vp-767 {
+      font-size: 12px;
+    }
+  }
+}

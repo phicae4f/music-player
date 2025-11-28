@@ -1,0 +1,33 @@
+@use "../global/variables" as *;
+@use "../global/mixins" as *;
+
+.btn {
+  background-color: $color-dark-gray;
+  color: $color-white;
+  letter-spacing: 0.1rem;
+  border: none;
+  padding: 10px 20px;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  min-width: 150px;
+  margin: 0 auto;
+  font-size: 20px;
+  font-family: $ff-actor;
+  border: 1px solid transparent;
+
+  &:hover,
+  &:focus-visible {
+    background-color: transparent;
+    color: $color-darker-gray;
+    border: 1px solid $color-darker-gray;
+  }
+
+  @include vp-767 {
+    padding: 5px 10px;
+    min-height: 30px;
+    font-size: 16px;
+  }
+}

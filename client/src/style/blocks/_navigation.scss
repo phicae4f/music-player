@@ -1,0 +1,149 @@
+@use "../global/variables" as *;
+@use "../global/mixins" as *;
+
+.navigation {
+  width: 100%;
+  height: 100vh;
+  background-color: $color-white-smoke;
+  $root: &;
+
+  @include vp-767 {
+    height: auto;
+  }
+
+  &__logo {
+    background-color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 68px;
+    border-right: 1px solid $color-whisper;
+
+    @include vp-767 {
+      min-height: 30px;
+      border: none;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: 46px 0;
+
+    @include vp-767 {
+      position: absolute;
+      width: 328px;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      gap: 12px;
+      top: 60px;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0;
+    }
+  }
+
+  &__item {
+    padding: 9px 31px;
+    transition: background-color $transition-300, color $transition-300;
+
+    &.active {
+      background-color: $color-white;
+
+      @include vp-767 {
+        background-color: $color-orange;
+        color: $color-white;
+      }
+
+      & span {
+        @include vp-767 {
+          color: $color-white;
+        }
+      }
+
+      & svg {
+        @include vp-767 {
+          color: $color-white;
+        }
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color-white;
+
+      @include vp-767 {
+        background-color: $color-orange;
+      }
+    }
+
+    & span {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: $color-black;
+      font-family: $ff-actor;
+      word-wrap: break-word;
+      white-space: normal;
+      max-width: 183px;
+
+      @include vp-767 {
+        max-width: 130px;
+        font-size: 14px;
+        line-height: 12px;
+        letter-spacing: 0.01em;
+      }
+    }
+
+    & svg {
+      @include vp-767 {
+        color: $color-black;
+      }
+    }
+
+    @include vp-767 {
+      display: flex;
+      flex-shrink: 1;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 30px;
+      background-color: $color-white;
+    }
+  }
+
+  &__link {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    #{$root}__item:nth-child(1) & svg {
+      display: flex;
+
+      @include vp-767 {
+        display: none;
+      }
+    }
+
+    #{$root}__item:nth-child(2) & svg:nth-child(2) {
+      display: none;
+
+      @include vp-767 {
+        display: flex;
+      }
+    }
+
+    #{$root}__item:nth-child(2) & svg:nth-child(1) {
+      display: flex;
+
+      @include vp-767 {
+        display: none;
+      }
+    }
+
+    @include vp-767 {
+      gap: 10px;
+    }
+  }
+}

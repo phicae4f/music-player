@@ -1,44 +1,54 @@
 @use "./variables" as *;
+@use "./mixins" as *;
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: $ff-actor;
-    background-color: $color-body;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: $ff-actor;
+  background-color: $color-white;
+
+  @include vp-767 {
+    background-color: $color-white-smoke;
+  }
 }
 
 main {
-    flex-grow: 1;
-    padding: 300px 0 0;
+  display: flex;
+  flex-grow: 1;
+  padding: 69px 0 0;
+  padding-left: 290px;
+
+  @include vp-767 {
+    padding: 61px 0 0;
+    padding-left: 0;
+    margin: 0 auto;
+  }
 }
 
-// .header--short + main {
-//     padding-top: 251px; 
-// }
-
 img {
-    display: block;
-    height: auto;
-    object-fit: cover;
+  display: block;
+  height: auto;
+  object-fit: cover;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-ul, li {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
