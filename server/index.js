@@ -7,13 +7,16 @@ const app = express();
 const PORT = 8000;
 
 app.use(cors({
-  origin: "https://music-player-gold-nine.vercel.app",
+  origin: "*",
   credentials: true
 }))
 
 app.use(bodyParser.json());
 app.use("/api", routes);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
+
+
+module.exports = app
