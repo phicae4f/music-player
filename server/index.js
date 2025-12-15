@@ -7,7 +7,7 @@ const app = express();
 const PORT = 8000;
 
 app.use(cors({
-  origin: "https://music-player-gold-nine.vercel.app/",
+  origin: "https://music-player-gold-nine.vercel.app",
   credentials: true
 }))
 
